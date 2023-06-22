@@ -23,6 +23,7 @@ pipeline {
     stage('Build image') {
       steps{
         script {
+          tool name: 'docker', type: 'org.jenkinsci.plugins.docker.commons.tools.DockerTool'
           dockerImage = docker.build dockerimagename
         }
       }
