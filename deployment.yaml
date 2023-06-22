@@ -1,21 +1,56 @@
+---
+apiVersion: v1
+data:
+  asmita.conf: |
+    This is my configuration file...asmita here !!
+kind: ConfigMap
+metadata:
+  name: config-asmita
+
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: secret-am
+type: Opaque
+data:
+  username: YWRtaW4=
+  password: YWRtaW4xMjM=
+
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: deployment #The name of the Kubernetes Deployment to be created in the Kubernetes cluster
+  name: deployment 
   labels:
     app: react-app
 spec:
-  replicas: 1 #The number of pods to be created in the Kubernetes cluster for the React.js application container
+  replicas: 1
   selector:
     matchLabels:
       app: react-app
   template:
     metadata:
       labels:
-        app: react-app 
+        app: react-app
     spec:
       containers:
-      - name: react-app #The name of the react.js application container
-        image: sandhyadockerac/react-app:latest #The Docker image for building the React.js application container
-        ports:
-        - containerPort: 3000 #The port for the React.js application   container
+        - name: react-app
+          image: sandhyadockerac/react-app:latest
+          ports:
+            - containerPort: 3000
+          volumeMounts:
+            - name: testconfigmap
+              mountPath: /tmp/config
+            - name: testsecret
+              mountPath: /tmp/mysecrets
+      volumes:
+        - name: testconfigmap
+          configMap:
+            name: config-asmita
+            items:
+              - key: asmita.conf
+                path: asmita.conf
+        - name: testsecret
+          secret:
+            secretName: secret-am
