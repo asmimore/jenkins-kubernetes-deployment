@@ -8,6 +8,9 @@ pipeline {
    agent { 
         label "docker-slave"
      }
+   tools{
+        dockerTool 'docker'
+    }
 
   stages {
 
