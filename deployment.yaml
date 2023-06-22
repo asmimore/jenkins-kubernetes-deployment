@@ -54,3 +54,19 @@ spec:
         - name: testsecret
           secret:
             secretName: secret-am
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: service
+spec:
+  selector:
+    app: nodeapp
+  type: NodePort
+  ports:
+    - protocol: TCP
+      port: 500
+      targetPort: 3000
+      nodePort: 33300
+
