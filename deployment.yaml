@@ -59,10 +59,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: service
+  name: service-react-app
 spec:
   selector:
-    app: nodeapp
+    app: react-app
   type: LoadBalancer
   ports:
     - protocol: TCP
