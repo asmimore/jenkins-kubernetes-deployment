@@ -4,17 +4,17 @@ pipeline {
     dockerimagename = "sandhyadockerac/react-app"
     dockerImage = ""
   }
-
-   agent { 
-     docker{
-        label "docker-slave"
-        image 'my-jenkins-slave:latest'
-        args '-v /var/run/docker.sock:/var/run/docker.sock'
-     }
-     }
-   tools{
-        dockerTool 'docker'
-    }
+   agent any
+  # agent { 
+   #  docker{
+   #     label "docker-slave"
+    #    image 'my-jenkins-slave:latest'
+     #   args '-v /var/run/docker.sock:/var/run/docker.sock'
+    # }
+     #}
+   #tools{
+    #    dockerTool 'docker'
+    #}
 
   stages {
 
@@ -27,7 +27,7 @@ pipeline {
     stage('Build image') {
       steps{
         script {
-          tool name: 'docker', type: 'org.jenkinsci.plugins.docker.commons.tools.DockerTool'
+          #tool name: 'docker', type: 'org.jenkinsci.plugins.docker.commons.tools.DockerTool'
           dockerImage = docker.build dockerimagename
         }
       }
