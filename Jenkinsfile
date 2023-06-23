@@ -8,6 +8,7 @@ pipeline {
    agent { 
      docker{
         label "docker-slave"
+        image 'my-jenkins-slave:latest'
         args '-v /var/run/docker.sock:/var/run/docker.sock'
      }
      }
