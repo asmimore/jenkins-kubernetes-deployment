@@ -49,7 +49,7 @@ spec:
           configMap:
             name: config-sandhya
             items:
-                - key: sandhya.conf
+              - key: sandhya.conf
                 path: sandhya.conf
         - name: testsecret
           secret:
@@ -59,15 +59,13 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: service-react-app
+  name: service
 spec:
   selector:
-    app: react-app
-  type: Nodeport
+    app: nodeapp
+  type: NodePort
   ports:
     - protocol: TCP
-      port: 500
+      port: 5000
       targetPort: 3000
-     
-    
-
+      nodePort: 33300
