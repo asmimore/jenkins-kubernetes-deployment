@@ -1,17 +1,17 @@
 ---
 apiVersion: v1
 data:
-  asmita.conf: |
-    This is my configuration file...asmita here !!
+  sandhya.conf: |
+    This is my configuration file...sandhya here !!
 kind: ConfigMap
 metadata:
-  name: config-asmita
+  name: config-sandhya
 
 ---
 apiVersion: v1
 kind: Secret
 metadata:
-  name: secret-am
+  name: secret-sa
 type: Opaque
 data:
   username: YWRtaW4=
@@ -47,13 +47,13 @@ spec:
       volumes:
         - name: testconfigmap
           configMap:
-            name: config-asmita
+            name: config-sandhya
             items:
-                - key: asmita.conf
-                path: asmita.conf
+                - key: sandhya.conf
+                path: sandhya.conf
         - name: testsecret
           secret:
-            secretName: secret-am
+            secretName: secret-sa
 
 ---
 apiVersion: v1
@@ -63,7 +63,7 @@ metadata:
 spec:
   selector:
     app: react-app
-  type: LoadBalancer
+  type: Nodeport
   ports:
     - protocol: TCP
       port: 500
