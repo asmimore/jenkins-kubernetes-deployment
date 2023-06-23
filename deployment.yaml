@@ -49,7 +49,7 @@ spec:
           configMap:
             name: config-asmita
             items:
-              - key: asmita.conf
+                - key: asmita.conf
                 path: asmita.conf
         - name: testsecret
           secret:
@@ -63,11 +63,11 @@ metadata:
 spec:
   selector:
     app: react-app
-  type: NodePort
+  type: LoadBalancer
   ports:
     - protocol: TCP
       port: 500
       targetPort: 3000
-      nodePort: 31000
+     
     
 
