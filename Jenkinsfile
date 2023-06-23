@@ -7,6 +7,8 @@ pipeline {
 
    agent { 
         label "docker-slave"
+        args '-v /var/run/docker.sock:/var/run/docker.sock'
+
      }
    tools{
         dockerTool 'docker'
