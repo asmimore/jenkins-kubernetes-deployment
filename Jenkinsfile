@@ -14,9 +14,9 @@ pipeline {
      //   args '-v /var/run/docker.sock:/var/run/docker.sock'
     // }
      //}
-   //tools{
-    //    dockerTool 'docker'
-    //}
+   tools{
+       dockerTool 'docker'
+   }
 
   stages {
 
