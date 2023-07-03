@@ -68,4 +68,4 @@ spec:
     - protocol: TCP
       port: 5000
       targetPort: 3000
-      nodePort: 33300
+      nodePort: 32200
