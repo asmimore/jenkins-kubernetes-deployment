@@ -52,7 +52,8 @@ pipeline {
     steps {
       script {
     withKubeConfig([credentialsId: 'kubeconfig', serverUrl: 'https://192.168.10.184:6443']) {
-      sh 'kubectl apply -f my-kubernetes-directory'
+     def kubectlPath = tool name: 'kubectl', type: 'Tool'
+      sh '${kubectlPath}/kubectl apply -f my-kubernetes-directory'
     }
     }
     }
