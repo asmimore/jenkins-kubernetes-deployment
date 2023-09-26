@@ -37,7 +37,7 @@ tools{
 
     stage('Pushing Image') {
       environment {
-               registryCredential = 'dockerhubloginsan'
+               registryCredential = 'dockerhublogin'
            }
       steps{
         script {
@@ -51,7 +51,7 @@ tools{
     stage('Deploying React.js container to Kubernetes') {
       steps {
         script {
-          kubernetesDeploy(configs: "deployment.yaml", kubeconfigId: "kubernetes")
+          kubernetesDeploy(configs: "deployment.yaml", kubeconfigId: "kubeconfig")
         }
       }
     }
