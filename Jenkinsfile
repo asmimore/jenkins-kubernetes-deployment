@@ -48,11 +48,16 @@ pipeline {
         }
       }
     }
+  stage('Apply Kubernetes files') {
+    withKubeConfig([credentialsId: 'kubeconfig', serverUrl: 'https://192.168.10.184:6443']) {
+      sh 'kubectl apply -f my-kubernetes-directory'
+    }
 
+  }
     stage('Deploying React.js container to Kubernetes') {
       steps {
         script {
-          kubernetesDeploy(configs: "deployment.yaml", kubeconfigId: "k8sCloud")
+          kubernetesDeploy(configs: "deployment.yaml", kubeconfigId: "kubeconfig")
         }
       }
     }
