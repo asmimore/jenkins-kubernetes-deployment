@@ -4,6 +4,7 @@ pipeline {
     dockerimagename = "sandhyadockerac/react-app"
     dockerImage = ""
   }
+  agent any
  //  agent { 
   //      label "docker-slave"
    //  }
